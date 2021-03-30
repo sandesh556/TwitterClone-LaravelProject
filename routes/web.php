@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/tweets',[TweetController::class,'store']);
     Route::get('/tweets',[TweetController::class,'index'])->name('home');
     Route::post('/Profiles/{user:name}/follow',[FollowsController::class,'store']);
+    Route::get('/Profiles/{user:name}/edit',[ProfilesController::class,'edit'])->middleware('can:edit,user');
+
 
 });
 Route::get('/Profiles/{user:name}',[ProfilesController::class,'show'])->name('profile');
