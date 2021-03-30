@@ -6,11 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Followable;
+//use App\Followable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Followable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +47,39 @@ class User extends Authenticatable
         return "https://i.pravatar.cc/400?u=". $this->email;
     }
 
+    public function following(User $user)
+    {
+       // return $this->follows->contains($user);
+        return $this->follows()->where('following_user_id',$user->id)->exists();
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
+    }
+
+    public function unfollows(User $user)
+    {
+        return $this->follows()->detach($user);
+    }
+
+    public function ToggleFollow(User $user){
+        if($this->following($user)){
+            return $this->unfollows($user);
+        }
+        else{
+            return $this->follow($user);
+        }
+
+    }
+
+    public function follow(User $user)
+    {
+        return $this->follows()->save($user);
+    }
+
     public function Timeline(){
+
         $ids = $this->follows()->pluck('id');
         $ids->push($this->id);
 

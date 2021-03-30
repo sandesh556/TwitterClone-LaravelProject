@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App;
+/*namespace App;
 
 
 use App\Models\User;
@@ -11,7 +11,7 @@ trait Followable
 
     public function following()
     {
-
+       //
     }
 
     public function follows()
@@ -23,4 +23,4 @@ trait Followable
     {
         return $this->follows()->save($user);
     }
-}
+}*/

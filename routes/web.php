@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\FollowsController;
 
 
 
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function(){
     Route::post('/tweets',[TweetController::class,'store']);
     Route::get('/tweets',[TweetController::class,'index'])->name('home');
+    Route::post('/Profiles/{user:name}/follow',[FollowsController::class,'store']);
 
 });
 Route::get('/Profiles/{user:name}',[ProfilesController::class,'show'])->name('profile');
