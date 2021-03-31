@@ -15,7 +15,7 @@
               <a href="{{$user->path('edit')}}" class="rounded-full border border-gray-300 py-2 px-4 text-black mr-2 text-xs">Edit Profile</a>
               @endcan
               @unless(auth()->user()->is($user))
-              <form method="POST" action="/Profiles/{{$user->name}}/follow">
+              <form method="POST" action="/Profiles/{{$user->username}}/follow">
                   {!! csrf_field() !!}
               <button type="submit" class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">
                   {{auth()->user()->following($user)?'Unfollow':'Follow'}}
