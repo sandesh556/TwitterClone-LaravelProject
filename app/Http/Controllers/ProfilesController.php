@@ -22,7 +22,7 @@ class ProfilesController extends Controller
         $attribute = request()->validate([
             'name' => 'required|max:255|string',
             'username' => "required|unique:users,username,{$user->id}|max:255|alpha_dash",
-            'avatar'=> "required|file",
+            'avatar'=> "file",
             'email'=>"string|email|required|max:255|unique:users,email,{$user->id}",
             'password' => 'string|min:8|max:255|confirmed|nullable'
 

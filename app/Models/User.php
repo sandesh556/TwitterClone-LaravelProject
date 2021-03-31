@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 //use App\Followable;
+use App\Http\Controllers\ProfilesController;
+
 
 class User extends Authenticatable
 {
@@ -44,10 +46,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = bcrypt($value);
+    }
 
     public function getAvatarAttribute($value){
-        return asset('storage/' . $value);
+
+        if(isset($value)) {
+
+            return asset('storage/' . $value );
+
+        } else {
+
+            return asset('images/other.jpg');
+        }
     }
+
 
     public function following(User $user)
     {
@@ -66,12 +80,8 @@ class User extends Authenticatable
     }
 
     public function ToggleFollow(User $user){
-        if($this->following($user)){
-            return $this->unfollows($user);
-        }
-        else{
-            return $this->follow($user);
-        }
+
+        return $this->follows()->toggle($user);
 
     }
 
