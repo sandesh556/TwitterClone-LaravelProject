@@ -21,24 +21,28 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-white sm:items-center py-4 sm:pt-0">
             <div class="content">
 
                 <div class="title m-b-md">
-                    Tweety
+                    <section class="px-8 py-4">
+                        <header style=>
+                            <img src="https://raw.githubusercontent.com/laracasts/Tweety/6b1b30e7fba003d08e0274f7f8fc6a804c9bfe7b/public/images/logo.svg" alt="Tweety" height="400px" width="400px">
+                        </header>
+                    </section>
                 </div>
-                <div class="links">
+                <div class="links" style="margin: auto; width: 54%;">
 
 
 
 
                     @auth
-                        <a href="{{ url('/tweets') }}" class="text-sm text-gray-700 underline">Home</a>
+                        <a href="{{ url('/tweets') }}" class="text-sm text-gray-700 underline" style="font-size: 30px; ">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline" style="font-size: 30px;">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline" style="font-size: 30px;">Register</a>
                         @endif
                     @endauth
 
