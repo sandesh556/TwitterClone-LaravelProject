@@ -6,5 +6,6 @@
         @empty
             <p class="p-4">No Tweets</p>
         @endforelse
+            {{ $tweets->links() }}
     </div>
 
