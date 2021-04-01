@@ -11,7 +11,7 @@ class ProfilesController extends Controller
     public function show(User $user){
         return view('profile.show',[
             'user'=>$user,
-            'tweets' =>$user->tweets()->paginate(30)
+            'tweets' =>$user->tweets()->withLikes()->paginate(30)
         ]);
     }
     public function edit(User $user){

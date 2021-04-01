@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Likeable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 //use App\Followable;
 use App\Http\Controllers\ProfilesController;
+use App\Like;
+
 
 
 class User extends Authenticatable
@@ -61,7 +64,9 @@ class User extends Authenticatable
             return asset('images/other.jpg');
         }
     }
-
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
 
     public function following(User $user)
     {

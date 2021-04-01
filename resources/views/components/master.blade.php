@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Tweety</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,5 +28,6 @@
     </section>
     {{$slot}}
 </div>
+<script src="http://unpkg.com/turbolinks"></script>
 </body>
 </html>

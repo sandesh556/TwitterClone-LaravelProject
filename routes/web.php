@@ -7,6 +7,7 @@ use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\TweetsLikescontroller;
 
 
 
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/Profiles/{user:username}/edit',[ProfilesController::class,'edit'])->middleware('can:edit,user');
     Route::patch('/Profiles/{user:username}',[ProfilesController::class,'update'])->middleware('can:edit, user');
     Route::get('/explore',[ExploreController::class,'index']);
+    Route::post('/tweets/{tweet}/like',[TweetsLikescontroller::class,'store']);
+    Route::delete('/tweets/{tweet}/like',[TweetsLikescontroller::class,'destroy']);
 
 });
 Route::get('/Profiles/{user:username}',[ProfilesController::class,'show'])->name('profile');
